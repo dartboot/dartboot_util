@@ -1,6 +1,6 @@
 name: dartboot_util
 description: The util library for DartBoot framework.
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/dartboot/dartboot_util
 
 environment:

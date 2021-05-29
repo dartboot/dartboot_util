@@ -18,8 +18,12 @@ dynamic encodeJson(dynamic v) {
   }
   var instanceMirror = reflect(v);
   var mirror = instanceMirror.type;
-  if (mirror.instanceMembers?.containsKey(Symbol('toJson')) ?? false) {
+  var methods = mirror.instanceMembers;
+  if (methods?.containsKey(Symbol('toJson')) ?? false) {
     return encodeJson(instanceMirror.invoke(Symbol('toJson'), []).reflectee);
+  }
+  if (methods?.containsKey(Symbol('toString')) ?? false) {
+    return encodeJson(instanceMirror.invoke(Symbol('toString'), []).reflectee);
   }
   return v;
 }
